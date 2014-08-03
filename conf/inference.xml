@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!-- /root/CustomResult/web_pdm/tupu -->
+<!-- /root/CustomResult/web_pdm/tupu -->
+<configuration>
+	<!-- set inference configuration file path -->
+	<property>
+		<name>local.path.inference.data.unify</name>
+		<value>/search/zhangk/Ontology/Merger/Output/data.unify</value>
+<!-- 		<value>./data/data.unify</value> -->
+	</property>
+	<property>
+		<name>local.path.merger.tmp.alias</name>
+		<value>/search/zhangk/Ontology/Merger/tmp/alias</value>
+<!-- 		<value>./data/alias</value> -->
+	</property>
+	<property>
+		<name>local.path.inference.merger.Lvyou.table</name>
+		<value>/search/zhangk/Ontology/Normalizer/conf/Lvyou.table</value>
+<!-- 		<value>./data/Lvyou.table</value> -->
+	</property>
+	
+	<property>
+		<name>local.path.inference.conf</name>
+		<value>/search/zhangk/Ontology/Inference/conf/</value>
+<!-- 		<value>./conf/</value> -->
+	</property>
+	
+	<property>
+		<name>local.path.inference.supplement</name>
+		<value>/search/zhangk/Ontology/Inference/supplement/</value>
+<!-- 		<value>./supplement/</value> -->
+	</property>
+	
+	
+	<property>
+		<name>fs.path.inference.home.la</name>
+		<value>/root/CustomResult/web_pdm/tupu/Ontology/</value>
+	</property>
+
+	<property>
+		<name>fs.path.inference.home.sunshine</name>
+		<value>/user/web_research/pdm/tupu/Ontology/</value>
+	</property>
+	
+	<property>
+		<name>fs.path.sogourank</name>
+		<value>hdfs://master01.la.hadoop.sogou-op.org:6230/root/CustomResult/web_pdm/tupu/sogourank/url/</value>
+	</property>
+	
+	<property>
+		<name>fs.path.initializer.inputs</name>
+		<value>${fs.path.inference.home}/Merger/Output/data.unify,
+			${fs.path.inference.home}/Inference/conf/url.click,
+			${fs.path.inference.home}/Inference/supplement/query.pv
+		</value>
+	</property>
+
+	<property>
+		<name>fs.path.initializer.output</name>
+		<value>${fs.path.inference.home}/Inference/Initializer/Output
+		</value>
+	</property>
+
+
+
+	<property>
+		<name>fs.path.inference.inputs</name>
+<!-- 				<value> -->
+<!-- 			${fs.path.inference.home}/Inference/test, -->
+<!-- 			${fs.path.inference.home}/Inference/supplement/init.rank, -->
+<!-- 			${fs.path.inference.home}/Inference/supplement/addword, -->
+<!-- 			${fs.path.inference.home}/Inference/supplement/blackpv, -->
+<!-- 			${fs.path.inference.home}/Inference/supplement/wordpv, -->
+<!-- 			${fs.path.inference.home}/Inference/supplement/weight.conf -->
+<!-- 		</value> -->
+
+		<value>
+			${fs.path.inference.home}/Inference/Initializer/Output,
+			${fs.path.inference.home}/Merger/Output/data.unify,
+			${fs.path.inference.home}/Inference/supplement/init.rank,
+			${fs.path.inference.home}/Inference/supplement/addword,
+			${fs.path.inference.home}/Inference/supplement/blackpv,
+			${fs.path.inference.home}/Inference/supplement/wordpv,
+			${fs.path.inference.home}/Inference/supplement/weight.conf
+		</value>
+	</property>
+
+	<property> 
+		<name>fs.path.inference.output</name>
+		<value>${fs.path.inference.home}/Inference/Output</value>
+	</property>
+
+	<property>
+		<name>fs.path.reservedprocess.inputs</name>
+		<value>${fs.path.inference.home}/Merger/Output/data.unify</value>
+<!-- 		<value>${fs.path.inference.home}/Inference/test</value> -->
+	</property>
+	
+	<property>
+		<name>fs.path.reservedprocess.output</name>
+		<value>${fs.path.inference.home}/Inference/ReservedProcess</value>
+	</property>
+	
+	<property>
+		<name>fs.path.reservedinference.inputs</name>
+		<value>${fs.path.inference.home}/Inference/Output</value>
+	</property>
+	
+	<property>
+		<name>fs.path.reservedinference.output</name>
+		<value>${fs.path.inference.home}/Inference/ReservedInference</value>
+	</property>
+	
+	<property>
+		<name>fs.path.messup.inputs</name>
+		<value>${fs.path.inference.home}/Inference/Output,
+		${fs.path.inference.home}/Merger/tmp/alias
+		</value>
+	</property>
+
+	<property>
+		<name>fs.path.messup.output</name>
+		<value>${fs.path.inference.home}/Inference/Messup/Output
+		</value>
+	</property>
+
+	<property>
+		<name>fs.path.messclean.inputs</name>
+		<value>${fs.path.inference.home}/Inference/Output,
+		${fs.path.inference.home}/Inference/Messup/Output,
+		${fs.path.inference.home}/Inference/supplement/alt_name.relevance,
+		${fs.path.inference.home}/Inference/supplement/bieming.output,
+		
+		${fs.path.inference.home}/Inference/supplement/innerid.pageid,
+		${fs.path.inference.home}/Inference/supplement/video.rank.w.type,
+		${fs.path.inference.home}/Inference/supplement/lvyou.add,
+		${fs.path.inference.home}/Inference/supplement/wordpv.black.manual.add,
+		${fs.path.inference.home}/Inference/supplement/types.ranklist,
+		${fs.path.inference.home}/Inference/supplement/people.dyn,
+		${fs.path.inference.home}/Inference/supplement/game_soft_output
+		</value>
+<!-- 				<value>${fs.path.inference.home}/Inference/find -->
+<!-- 		</value> -->
+	</property>
+
+	<property>
+		<name>fs.path.messclean.output</name>
+		<value>${fs.path.inference.home}/Inference/Result</value>
+	</property>
+
+	<!-- set initializer/inference/messclean classes -->
+	<property>
+		<name>initializer.classes</name>
+		<value>InferenceMR,
+			AddWordMR,
+			WordPvMR,
+			FoundInClickMR,
+			FoodMR,
+			FoodEffectMR,
+			BlackMR
+		</value>
+<!-- 		<value>FoodEffectMR</value> -->
+	</property>
+
+	<property>
+		<name>inference.classes</name>
+		<value>PeiyinMR,
+			InferenceMR,
+			ImportanceMR,
+			AddWordMR,
+			WordPvMR,
+			NovelFirstSiteMR,
+			FoundInClickMR,
+			FoodMR,
+			BlackMR,
+			BlackTravelMR,
+			FoodGongXiaoMR
+		</value>
+		<!-- <value>PeiyinMR,InferenceMR,ImportanceMR,SortBlockMR,AddWordMR,WordPvMR,NovelFirstSiteMR,FoundInClickMR</value> -->
+	</property>
+
+	<property>
+		<name>reservedprocess.classes</name>
+		<value>TravelMR,
+		RankListMR,
+		DateDynMR,
+		GameSoftMR
+		</value>
+	</property>
+	
+	<property>
+		<name>reservedinference.classes</name>
+		<value>
+		TravelMR,
+		RankListMR
+		</value>
+	</property>
+	
+	<property>
+		<name>messup.classes</name>
+		<value>SortBlockMR,
+		IdInferenceMR</value>
+	</property>
+	<property>
+		<name>messclean.classes</name>
+		<value>
+		ReservedMR,
+		SortBlockMR,
+		TypeConflictMR,
+		IdInferenceMR,
+		SupplementMR,
+		NovelPvMR,
+		CategoryMR,
+		TrueTypeMR
+		</value>
+	</property>
+	
+	<property>
+		<name>initializer.mapreduce.num.reduce</name>
+		<value>200</value>
+	</property>
+	
+	<property>
+		<name>inference.mapreduce.num.reduce</name>
+<!-- 		<value>1</value> -->
+		<value>400</value>
+	</property>
+	
+	<property>
+		<name>messup.mapreduce.num.reduce</name>
+		<value>200</value>
+	</property>
+	
+	<property>
+		<name>messclean.mapreduce.num.reduce</name>
+		<value>200</value>
+	</property>
+	
+	<property>
+		<name>mapred.task.timeout</name>
+		<value>0</value>
+	</property>
+	<property>
+		<name>mapred.max.split.size</name>
+		<value>200000000</value>
+	</property>
+	<property>
+		<name>mapred.job.priority</name>
+		<value>VERY_HIGH</value>
+	</property>
+</configuration>
+

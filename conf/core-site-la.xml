@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <!-- ****** OP CARES ****** -->
+  <property>
+    <name>fs.default.name</name>
+    <value>hdfs://master01.la.hadoop.sogou-op.org:6230</value>
+  </property>
+
+  <!-- multiple nn checkpoint replica -->
+  <property>
+     <name>fs.checkpoint.dir</name>
+     <value>/search/hadoop01/namesecondary</value>
+  </property>
+
+  <property>
+     <name>hadoop.tmp.dir</name>
+     <value>/hadoop</value>
+  </property>
+  <!-- ****** OP CARES end. ****** -->
+
+  <!-- lzo config start -->
+  <property>
+    <name>io.compression.codecs</name>
+    <value>org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.BZip2Codec,com.hadoop.compression.lzo.LzopCodec,com.hadoop.compression.lzo.LzoCodec</value>
+  </property>
+
+  <property>
+    <name>io.compression.codec.lzo.class</name>
+    <value>com.hadoop.compression.lzo.LzoCodec</value>
+  </property>
+  <!-- lzo config end -->
+
+  <property>
+    <name>io.file.buffer.size</name>
+    <value>131072</value>
+    <description>The size of buffer for use in sequence files.
+    The size of this buffer should probably be a multiple of hardware
+    page size (4096 on Intel x86), and it determines how much data is
+    buffered during read and write operations. (Default: 4096, hadoop suggest 131072, kirby suggest ~10M, but it doesn't matter too much in my experience)</description>
+  </property>
+   <property>
+                <name>fs.inmemory.size.mb</name>
+                <value>400</value>
+   </property>
+
+ <property>
+    <name>hadoop.security.authentication</name>
+    <value>configfile</value>
+  </property>
+
+  <property>
+    <name>hadoop.client.ugi</name>
+    <value>ugi_config</value>
+  </property>
+</configuration>
+

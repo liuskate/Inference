@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+  <!-- ****** OP CARES ****** -->
+  <property>
+    <name>mapred.job.tracker</name>
+    <value>master01.la.hadoop.sogou-op.org:6272</value>
+  </property>
+
+  <!-- use multiple disk -->
+  <property>
+    <name>mapred.local.dir</name>
+    <value>/search/hadoop01/mapred,/search/hadoop02/mapred,/search/hadoop03/mapred,/search/hadoop04/mapred,/search/hadoop05/mapred,/search/hadoop06/mapred,/search/hadoop07/mapred,/search/hadoop08/mapred,/search/hadoop09/mapred,/search/hadoop10/mapred,/search/hadoop11/mapred,/search/hadoop12/mapred</value>
+  </property>
+
+  <property> 
+    <name>mapred.child.java.opts</name> 
+    <value>-Xmx1536M</value> 
+  </property>
+
+  <property>
+    <name>mapred.tasktracker.map.tasks.maximum</name>
+    <value>11</value>
+  </property>
+
+  <property>
+    <name>mapred.tasktracker.reduce.tasks.maximum</name>
+    <value>11</value>
+  </property>
+
+  <property>
+    <name>mapred.system.dir</name>
+    <value>/mapred/system</value>
+  </property>
+  <!-- ****** OP CARES end ****** -->
+   <property>
+   <name>mapred.job.tracker.http.address</name>
+   <value>0.0.0.0:50030</value>
+   </property>
+
+
+   <property>
+                <name>mapred.jobtracker.maxtasks.per.job</name>
+                <value>-1</value>
+   </property>
+
+        <property>
+                <name>mapred.job.tracker.handler.count</name>
+                <value>300</value>
+                <description> The number of server threads for the JobTracker.This should be roughly  4% of the number of tasktracker nodes.  </description>
+        </property>
+
+        <property>
+                <name>mapred.map.max.attempts</name>
+                <value>400</value>
+                <description>Expert: The maximum number of attempts per map
+task.  In other words, framework will try to execute a map task these many
+number  of times before giving up on it. </description>
+        </property>
+
+
+        <property>
+                <name>mapred.reduce.max.attempts</name>
+                <value>400</value>
+        </property>
+
+        <property>
+                <name>mapred.max.tracker.failures</name>
+                <value>400</value>
+                <description>The number of task-failures on a tasktracker of a
+given job after which new tasks of that job aren't assigned to
+it.</description>
+        </property>
+
+        <property>
+                <name>mapred.fairscheduler.poolnameproperty</name>
+                <value>user.name</value>
+                <description>job.set("mapred.queue.name",pool); // pool is set
+to either 'high' or 'low' </description>
+        </property>
+        <property>
+                <name>mapred.fairscheduler.preemption.interval</name>
+                <value>15000</value>
+        </property>
+        <property>
+                <name>mapred.max.tracker.blacklists</name>
+                <value>40</value>
+        </property>
+  <!-- Enable Hue plugins -->
+  <property>
+    <name>mapred.jobtracker.plugins</name>
+    <value>org.apache.hadoop.thriftfs.ThriftJobTrackerPlugin</value>
+    <description>Comma-separated list of jobtracker plug-ins to be activated.
+    </description>
+  </property>
+  <property>
+    <name>jobtracker.thrift.address</name>
+    <value>0.0.0.0:9290</value>
+  </property>
+
+  <!-- enable map output data compression -->
+  <property>
+    <name>mapred.output.compression.type</name>
+    <value>BLOCK</value>
+    <description>If the job outputs are to compressed as SequenceFiles, how should
+                 they be compressed? Should be one of NONE, RECORD or BLOCK.
+    </description>
+  </property>
+
+  <property>
+    <name>mapred.compress.map.output</name>
+    <value>true</value>
+  </property>
+  <!-- enable map output data compression end -->
+
+  <!-- hadoop lzo start -->
+  <property>
+    <name>mapred.map.output.compression.codec</name>
+    <value>com.hadoop.compression.lzo.LzoCodec</value>
+  </property>
+  <!-- hadoop lzo end -->
+
+  <!-- recomanded options from run900 -->
+  <property>
+    <name>mapred.reduce.parallel.copies</name>
+    <value>20</value>
+    <description>The default number of parallel transfers run by reduce
+    during the copy(shuffle) phase. Default: 5 (900 node: 20, 2000 node: 50)
+    </description>
+  </property>
+  
+  <property>
+    <name>mapred.reduce.copy.backoff</name>
+    <value>300</value>
+    <description>The maximum amount of time (in seconds) a reducer spends on 
+    fetching one map output before declaring it as failed. Default: 300
+    </description>
+  </property>
+  
+  <property>
+    <name>tasktracker.http.threads</name>
+    <value>50</value>
+    <description>The number of worker threads that for the http server. This is
+                 used for map output fetching. Default: 40
+    </description>
+  </property>
+  
+
+  <!-- recomanded options from run900 end. -->
+
+  <!-- Enable fairscheduler -->
+
+  <property>
+    <name>mapred.jobtracker.taskScheduler</name>
+    <value>org.apache.hadoop.mapred.FairScheduler</value>
+  </property>
+
+  <property>
+    <name>mapred.fairscheduler.preemption</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>mapred.fairscheduler.allocation.file</name>
+    <value>/etc/hadoop/conf/fair-scheduler.xml</value>
+  </property>
+
+  <property>
+    <name>mapred.fairscheduler.pool</name>
+    <value>default</value>
+  </property>
+
+  <property>
+    <name>mapred.fairscheduler.preemptionformemory</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>mapred.fairscheduler.eachtimekilledformemory</name>
+    <value>2</value>
+  </property>
+
+  <property>
+    <name>mapred.fairscheduler.memoryusagethreshold</name>
+    <value>90</value>
+  </property>
+
+
+    <property>
+                <name>mapred.fairscheduler.preemption.only.log</name>
+                <value>true</value>
+    </property>
+
+
+  <property>
+    <name>mapred.local.memoryusagethreshold</name>
+    <value>90</value>
+  </property>
+
+  <!-- Enable fairscheduler end. -->
+
+  <!-- The interval of watch dog checks memory usage status -->
+  <property>
+    <name>mapred.tasktracker.watchdog.interval</name>
+    <value>200</value>
+  </property>
+
+   <property>
+          <name>io.sort.factor</name>
+          <value>60</value>
+          <description>The number of streams to merge at once while sorting files.  This determines the number of openfile handles.</description>
+    </property>
+
+    <property>
+          <name>io.sort.mb</name>
+          <value>400</value>
+          <description>The total amount of buffer memory to use while sorting files, in megabytes.  By default, gives each merge stream 1MB, which should minimize seeks.</description>
+        </property>
+        <property>
+          <name>mapred.userlog.retain.hours</name>
+          <value>168</value>
+          <description>The maximum time, in hours, for which the user-logs are to be retained.</description>
+        </property>
+
+<property>
+          <name>mapred.map.tasks.speculative.execution</name>
+          <value>false</value>
+</property>
+
+<property>
+          <name>mapred.reduce.tasks.speculative.execution</name>
+          <value>false</value>
+</property>
+
+<property> 
+          <name>mapred.reduce.slowstart.completed.maps</name> 
+          <value>1</value> 
+</property> 
+
+<property>
+    <name>mapred.reduce.copy.solidbackoff</name>
+    <value>1200000</value>
+</property>
+
+<property>
+    <name>mapred.task.timeout</name>
+    <value>1200000</value>
+</property>
+
+<property>
+    <name>jobclient.output.filter</name>
+    <value>NONE</value>
+</property>
+
+</configuration>

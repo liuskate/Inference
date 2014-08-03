@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <property>
+    <name>fs.default.name</name>
+    <value>hdfs://cloud1016128162.wd.sjs.ss.nop.sogou-op.org:8020</value>
+  </property>
+
+  <!--property>
+    <name>local.realm</name>
+    <value>CLUSTER-REALM.SS.SOGOU-OP.ORG</value>
+  </property-->
+
+  <!-- lzo config start -->
+  <property>
+    <name>io.compression.codecs</name>
+    <value>org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.BZip2Codec,com.hadoop.compression.lzo.LzopCodec,com.hadoop.compression.lzo.LzoCodec</value>
+  </property>
+
+  <property>
+    <name>io.compression.codec.lzo.class</name>
+    <value>com.hadoop.compression.lzo.LzoCodec</value>
+  </property>
+  <!-- lzo config end -->
+
+  <!-- optimize buffer size -->
+  <property>
+    <name>io.file.buffer.size</name>
+    <value>16384</value>
+    <description>The size of buffer for use in sequence files.
+    The size of this buffer should probably be a multiple of hardware
+    page size (4096 on Intel x86), and it determines how much data is
+    buffered during read and write operations. (Default: 4096, hadoop suggest 131072, kirby suggest ~10M, but it doesn't matter too much in my experience)</description>
+  </property>
+  <!-- optimize buffer size end -->
+
+  <property>
+    <name>hadoop.security.authentication</name>
+    <value>configfile</value> <!-- A value of "simple" would disable security. -->
+  </property>
+
+  <property>
+    <name>hadoop.client.ugi</name>
+    <value>ugi_config</value>
+  </property> 
+  
+  <!--property>
+    <name>hadoop.security.authorization</name>
+    <value>true</value>
+  </property-->
+
+  <property>
+    <name>dfs.block.size</name>
+    <value>268435456</value>
+    <description>The default block size for new files. Default: 67108864</description>
+  </property>
+
+</configuration>
+

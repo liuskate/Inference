@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <property>
+    <name>mapred.job.tracker</name>
+    <value>cloud1016128161.wd.sjs.ss.nop.sogou-op.org:8021</value>
+  </property>
+
+  <property> 
+    <name>mapred.child.java.opts</name> 
+    <value>-Xmx690M</value> 
+    <!--
+    <value>-Xmx4096M -verbose:gc -Xloggc:/tmp/@taskid@.gc -XX:-UseGCOverheadLimit -Djomp.threads=4</value> 
+    -->
+    <description>Java opts for the task tracker child processes.
+    The following symbol, if present, will be interpolated: @taskid@ is replaced
+    by current TaskID. Any other occurrences of '@' will go unchanged.
+    For example, to enable verbose gc logging to a file named for the taskid in
+    /tmp and to set the heap maximum to be a gigabyte, pass a 'value' of:
+        -Xmx1024m -verbose:gc -Xloggc:/tmp/@taskid@.gc
+
+    The configuration variable mapred.child.ulimit can be used to control the
+    maximum virtual memory of the child processes.
+    </description>
+  </property>
+
+  <!-- recomanded options from run900 -->
+  <property>
+    <name>mapred.reduce.parallel.copies</name>
+    <value>20</value>
+    <description>The default number of parallel transfers run by reduce
+    during the copy(shuffle) phase. Default: 5 (900 node: 20, 2000 node: 50)
+    </description>
+  </property>
+  
+  <property>
+    <name>mapred.reduce.copy.backoff</name>
+    <value>300</value>
+    <description>The maximum amount of time (in seconds) a reducer spends on 
+    fetching one map output before declaring it as failed. Default: 300
+    </description>
+  </property>
+  
+  <property>
+    <name>io.sort.factor</name>
+    <value>100</value>
+    <description>The number of streams to merge at once while sorting
+    files.  This determines the number of open file handles. Default: 10</description>
+  </property>
+  
+  <property>
+    <name>io.sort.mb</name>
+    <value>100</value>
+    <description>The total amount of buffer memory to use while sorting
+    files, in megabytes.  By default, gives each merge stream 1MB, which
+    should minimize seeks. Default: 100</description>
+  </property>
+
+  <!-- recomanded options from run900 end. -->
+
+  <property>
+    <name>mapred.job.reuse.jvm.num.tasks</name>
+    <value>1</value>
+    <description>How many tasks to run per jvm. If set to -1, there is
+    no limit. Default: 1
+    </description>
+  </property>
+
+  <property>
+    <name>mapred.userlog.limit.kb</name>
+    <value>5000</value>
+  </property>
+
+  <!--property>
+    <name>mapreduce.jobtracker.kerberos.principal</name>
+    <value>mapred/_HOST@${local.realm}</value>
+  </property>
+  <property>
+    <name>mapreduce.jobtracker.kerberos.https.principal</name>
+    <value>host/_HOST@${local.realm}</value>
+  </property-->
+
+</configuration>
